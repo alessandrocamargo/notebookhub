@@ -1,15 +1,13 @@
+import Navbar from './Navbar';
+import Footer from './Footer';
 function Layout({ children }) {
   return (
     <div>
-      <header>
-        <h1>NotebookHub</h1>
-      </header>
+      <Navbar />
 
       <main>{children}</main>
 
-      <footer>
-        <p>© {new Date().getFullYear()} NotebookHub</p>
-      </footer>
+      <Footer />
     </div>
   );
 }

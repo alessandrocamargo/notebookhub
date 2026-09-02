@@ -1,14 +1,13 @@
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import Layout from './components/Layout';
+import NotebookCard from './components/NotebookCard';
+import { notebooks } from './data/notebooks';
 
-function Layout({ children }) {
+function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      <Navbar />
-      <main className="flex-grow">{children}</main>
-      <Footer />      
-    </div>
+    <Layout>
+      <NotebookCard notebook={notebooks[0]} />
+    </Layout>
   );
 }
 
-export default Layout;
+export default App;

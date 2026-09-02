@@ -1,11 +1,11 @@
 import Layout from './components/Layout';
-import NotebookCard from './components/NotebookCard';
+import NotebookGrid from './components/NotebookGrid';
 import { notebooks } from './data/notebooks';
 
 function App() {
   return (
     <Layout>
-      <NotebookCard notebook={notebooks[0]} />
+      <NotebookGrid notebooks={notebooks} />
     </Layout>
   );
 }

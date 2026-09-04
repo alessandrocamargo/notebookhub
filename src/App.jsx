@@ -1,11 +1,10 @@
 import Layout from './components/Layout';
-import NotebookGrid from './components/NotebookGrid';
-import { notebooks } from './data/notebooks';
+import NotebooksPage from './pages/NotebooksPage';
 
 function App() {
   return (
     <Layout>
-      <NotebookGrid notebooks={notebooks} />
+      <NotebooksPage/>
     </Layout>
   );
 }

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 export default function NotebookCard({notebook}) {
     return(
         <div className="bg-surface rounded-lg overflow-hidden">
@@ -11,7 +12,7 @@ export default function NotebookCard({notebook}) {
                     <p>Bom para: {notebook.categories.join(" | ")}</p>
                 </div>
                 <p className="font-bold">{`R$ ${notebook.price}`}</p>
-                <a href="#" className="text-primary">Ver mais detalhes</a>
+                <Link to={`/notebooks/${notebook.id}`} className="text-primary">Ver mais detalhes</Link>
             </div>
         </div>
     )

@@ -9,11 +9,7 @@ export default function HomePage() {
         <div className="max-w-7xl mx-auto">
             <div className="flex flex-wrap gap-2">
             {categoriasUnicas.map((categoria) => (
-                <Link
-                    key={categoria}
-                    to={`/categoria/${slugify(categoria)}`}
-                    className="rounded-full border px-4 py-2 hover:text-primary transition-colors"
-                >
+                <Link key={categoria} to={`/categoria/${slugify(categoria)}`} className="rounded-full border px-4 py-2 hover:text-primary transition-colors">
                     {categoria}
                 </Link>
             ))}

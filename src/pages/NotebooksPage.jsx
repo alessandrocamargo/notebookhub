@@ -3,8 +3,7 @@ import NotebookGrid from "../components/NotebookGrid"
 import { filterNotebooks } from "../services/filters";
 import { useState } from "react"
 export default function NotebooksPage(){
-    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:""});
-    // console.log(filters)
+    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:"", minRam:""});
     const filteredNotebooks = filterNotebooks(notebooks,filters);
     const brands = [...new Set(notebooks.map((notebook) => notebook.brand))];
     const categories = [...new Set(notebooks.flatMap((notebook) => notebook.categories))];
@@ -25,6 +24,12 @@ export default function NotebooksPage(){
                 <option value="3000">Até R$ 3.000</option>
                 <option value="5000">Até R$ 5.000</option>
                 <option value="7000">Até R$ 7.000</option>
+            </select>
+            <select value={filters.minRam} onChange={(e) => setFilters({...filters, minRam: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="">Qualquer RAM</option>
+                <option value="8">8GB ou mais</option>
+                <option value="16">16GB ou mais</option>
+                <option value="32">32GB ou mais</option>
             </select>
             </div>
             <NotebookGrid notebooks={filteredNotebooks} />

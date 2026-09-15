@@ -3,7 +3,7 @@ import NotebookGrid from "../components/NotebookGrid"
 import { filterNotebooks } from "../services/filters";
 import { useState } from "react"
 export default function NotebooksPage(){
-    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:"", minRam:"", minStorage:"", gpu:""});
+    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:"", minRam:"", minStorage:"", gpu:"", minRating:""});
     const filteredNotebooks = filterNotebooks(notebooks,filters);
     const brands = [...new Set(notebooks.map((notebook) => notebook.brand))];
     const categories = [...new Set(notebooks.flatMap((notebook) => notebook.categories))];
@@ -41,6 +41,12 @@ export default function NotebooksPage(){
             <select value={filters.gpu} onChange={(e) => setFilters({...filters, gpu: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                 <option value="">Qualquer GPU</option>
                 {gpuBrands.map((gpu) => (<option key={gpu} value={gpu}>{gpu}</option>) )}
+            </select>
+            <select value={filters.minRating} onChange={(e) => setFilters({...filters, minRating: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="">Qualquer avaliação</option>
+                <option value="4.0">A partir de 4.0</option>
+                <option value="4.5">A partir de 4.5</option>
+                <option value="5.0">A partir de 5.0</option>
             </select>
             </div>
             <NotebookGrid notebooks={filteredNotebooks} />

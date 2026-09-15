@@ -6,6 +6,7 @@ export function filterNotebooks(notebooks, filters) {
         (filters.maxPrice === "" || notebook.price <= Number(filters.maxPrice))&&
         (filters.minRam === "" || notebook.ram >= Number(filters.minRam))&&
         (filters.minStorage === "" || notebook.storage >= Number(filters.minStorage))&&
-        (filters.gpu === "" || notebook.gpu.split(" ")[0] === filters.gpu)
+        (filters.gpu === "" || notebook.gpu.split(" ")[0] === filters.gpu)&& 
+        (filters.minRating === "" || notebook.rating >= Number(filters.minRating))
     );
 }

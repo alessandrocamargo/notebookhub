@@ -3,10 +3,11 @@ import NotebookGrid from "../components/NotebookGrid"
 import { filterNotebooks } from "../services/filters";
 import { useState } from "react"
 export default function NotebooksPage(){
-    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:"", minRam:""});
+    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:"", minRam:"", minStorage:"", gpu:""});
     const filteredNotebooks = filterNotebooks(notebooks,filters);
     const brands = [...new Set(notebooks.map((notebook) => notebook.brand))];
     const categories = [...new Set(notebooks.flatMap((notebook) => notebook.categories))];
+    const gpuBrands = [...new Set(notebooks.map((notebook) => notebook.gpu.split(" ")[0]))]
     return(
         <div className="space-y-2 px-1 max-w-7xl mx-auto">
             <div className="flex gap-1">
@@ -30,6 +31,16 @@ export default function NotebooksPage(){
                 <option value="8">8GB ou mais</option>
                 <option value="16">16GB ou mais</option>
                 <option value="32">32GB ou mais</option>
+            </select>
+            <select value={filters.minStorage} onChange={(e) => setFilters({...filters, minStorage: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="">Qualquer Armazenamento</option>
+                <option value="256">256GB ou mais</option>
+                <option value="512">512GB ou mais</option>
+                <option value="1024">1024GB ou mais</option>
+            </select>
+            <select value={filters.gpu} onChange={(e) => setFilters({...filters, gpu: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="">Qualquer GPU</option>
+                {gpuBrands.map((gpu) => (<option key={gpu} value={gpu}>{gpu}</option>) )}
             </select>
             </div>
             <NotebookGrid notebooks={filteredNotebooks} />

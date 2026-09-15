@@ -1,15 +1,11 @@
 import { notebooks } from "../data/notebooks"
 import NotebookGrid from "../components/NotebookGrid"
+import { filterNotebooks } from "../services/filters";
 import { useState } from "react"
 export default function NotebooksPage(){
     const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:""});
     // console.log(filters)
-
-    const filteredNotebooks = notebooks.filter((notebook) => notebook.name.toLowerCase().includes(filters.search.toLowerCase())&&
-        (filters.brand === "" || notebook.brand === filters.brand)&& 
-        (filters.category === "" || notebook.categories.some((category) => category === filters.category))&&
-        (filters.maxPrice === "" || notebook.price <= Number(filters.maxPrice))
-    )
+    const filteredNotebooks = filterNotebooks(notebooks,filters);
     const brands = [...new Set(notebooks.map((notebook) => notebook.brand))];
     const categories = [...new Set(notebooks.flatMap((notebook) => notebook.categories))];
     return(

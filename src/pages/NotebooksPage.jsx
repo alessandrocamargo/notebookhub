@@ -2,12 +2,13 @@ import { notebooks } from "../data/notebooks"
 import NotebookGrid from "../components/NotebookGrid"
 import { useState } from "react"
 export default function NotebooksPage(){
-    const [filters, setFilters] = useState({search:"", brand:"", category:""});
+    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:""});
     // console.log(filters)
 
     const filteredNotebooks = notebooks.filter((notebook) => notebook.name.toLowerCase().includes(filters.search.toLowerCase())&&
         (filters.brand === "" || notebook.brand === filters.brand)&& 
-        (filters.category === "" || notebook.categories.some((category) => category === filters.category))
+        (filters.category === "" || notebook.categories.some((category) => category === filters.category))&&
+        (filters.maxPrice === "" || notebook.price <= Number(filters.maxPrice))
     )
     const brands = [...new Set(notebooks.map((notebook) => notebook.brand))];
     const categories = [...new Set(notebooks.flatMap((notebook) => notebook.categories))];
@@ -22,6 +23,12 @@ export default function NotebooksPage(){
             <select value={filters.category} onChange={(e) => setFilters({...filters, category:e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
                 <option value="">Todas as categorias</option>
                 {categories.map((category) => (<option key={category} value={category}>{category}</option>))}
+            </select>
+            <select value={filters.maxPrice} onChange={(e) => setFilters({...filters, maxPrice: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
+                <option value="">Qualquer Preço</option>
+                <option value="3000">Até R$ 3.000</option>
+                <option value="5000">Até R$ 5.000</option>
+                <option value="7000">Até R$ 7.000</option>
             </select>
             </div>
             <NotebookGrid notebooks={filteredNotebooks} />

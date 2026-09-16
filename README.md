@@ -1,16 +1,73 @@
-# React + Vite
+# 💻 NotebookHub
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação web para pesquisa, comparação e recomendação de notebooks — ajudando o usuário a encontrar o modelo certo para sua necessidade e orçamento, sem precisar entender de hardware.
 
-Currently, two official plugins are available:
+![Listagem de notebooks com filtros](./notebooks-listagem-filtros.png)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🎯 Sobre o projeto
 
-## React Compiler
+O NotebookHub é um MVP frontend que permite:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Pesquisar notebooks por nome
+- Filtrar por marca, categoria, faixa de preço, RAM, armazenamento, fabricante de GPU e avaliação (combináveis entre si)
+- Navegar por categorias de uso (Games, Programação, Trabalho, Estudos, Custo-benefício...)
+- Visualizar detalhes completos de cada notebook: descrição, especificações técnicas, prós e contras
+- Ver mensagens claras quando nenhum resultado é encontrado
 
-## Expanding the ESLint configuration
+![Categorias na Home](./home-categorias.png)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Todos os dados são mockados localmente — não há backend nem preços/produtos reais.
+
+## 🛠️ Stack
+
+- **React** + **Vite**
+- **JavaScript** (sem TypeScript)
+- **React Router** para navegação client-side
+- **Tailwind CSS v4** com Design System próprio (tokens de cor, tipografia e espaçamento)
+- **Lucide React** para ícones
+
+## 🚀 Rodando localmente
+
+```bash
+git clone <url-do-repositorio>
+cd notebookhub
+npm install
+npm run dev
+```
+
+## 📁 Estrutura de pastas
+
+```
+src/
+├── components/     # Componentes reutilizáveis (NotebookCard, FilterSelect, EmptyState...)
+├── pages/          # Páginas ligadas às rotas (Home, Notebooks, Detalhes, Categoria, 404)
+├── data/           # Dados mockados dos notebooks
+├── services/       # Funções utilitárias (slugify, filterNotebooks)
+├── App.jsx
+├── main.jsx
+└── index.css       # Tokens do Design System (@theme)
+```
+
+## ✅ Funcionalidades implementadas
+
+- [x] Design System (cores, tipografia, espaçamento)
+- [x] Layout responsivo com Navbar e Footer
+- [x] Listagem de notebooks com grid responsivo
+- [x] Roteamento (Home, Notebooks, Detalhes, Categoria, 404)
+- [x] Página de detalhes completa
+- [x] Busca por nome
+- [x] Filtros combináveis (marca, categoria, preço, RAM, armazenamento, GPU, avaliação)
+- [x] Estados de interface (vazio)
+
+## 🔜 Roadmap
+
+- [ ] Ordenação de resultados (menor preço, maior avaliação...)
+- [ ] Comparador de notebooks
+- [ ] Sistema de recomendação por questionário
+- [ ] Revisão de acessibilidade e SEO
+- [ ] Evolução para full stack (FastAPI + PostgreSQL)
+- [ ] Deploy
+
+## 📖 Sobre o processo
+
+Este projeto está sendo construído como estudo prático de Frontend, React e UI/UX — desenvolvido passo a passo, fase por fase, com foco em entender cada decisão técnica e de design, não apenas implementar. Por isso o projeto evolui de forma incremental e documentada por commits organizados por funcionalidade.

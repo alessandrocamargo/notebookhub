@@ -1,53 +1,91 @@
 import { notebooks } from "../data/notebooks"
 import NotebookGrid from "../components/NotebookGrid"
 import { filterNotebooks } from "../services/filters";
+import FilterSelect from "../components/FilterSelect";
 import { useState } from "react"
-export default function NotebooksPage(){
-    const [filters, setFilters] = useState({search:"", brand:"", category:"", maxPrice:"", minRam:"", minStorage:"", gpu:"", minRating:""});
-    const filteredNotebooks = filterNotebooks(notebooks,filters);
+export default function NotebooksPage() {
+    const [filters, setFilters] = useState({ search: "", brand: "", category: "", maxPrice: "", minRam: "", minStorage: "", gpu: "", minRating: "" });
+    const filteredNotebooks = filterNotebooks(notebooks, filters);
     const brands = [...new Set(notebooks.map((notebook) => notebook.brand))];
     const categories = [...new Set(notebooks.flatMap((notebook) => notebook.categories))];
     const gpuBrands = [...new Set(notebooks.map((notebook) => notebook.gpu.split(" ")[0]))]
-    return(
-        <div className="space-y-2 px-1 max-w-7xl mx-auto">
-            <div className="flex gap-1">
-                <input type="text" value={filters.search} onChange={(e) => setFilters({...filters,search:e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Digite o que deseja buscar"/>
-            <select value={filters.brand} onChange={(e) => setFilters({ ...filters, brand:e.target.value })} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Todas as marcas</option>
-                {brands.map((brand) => (<option key={brand} value={brand}>{brand}</option>))}
-            </select>
-            <select value={filters.category} onChange={(e) => setFilters({...filters, category:e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Todas as categorias</option>
-                {categories.map((category) => (<option key={category} value={category}>{category}</option>))}
-            </select>
-            <select value={filters.maxPrice} onChange={(e) => setFilters({...filters, maxPrice: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Qualquer Preço</option>
-                <option value="3000">Até R$ 3.000</option>
-                <option value="5000">Até R$ 5.000</option>
-                <option value="7000">Até R$ 7.000</option>
-            </select>
-            <select value={filters.minRam} onChange={(e) => setFilters({...filters, minRam: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Qualquer RAM</option>
-                <option value="8">8GB ou mais</option>
-                <option value="16">16GB ou mais</option>
-                <option value="32">32GB ou mais</option>
-            </select>
-            <select value={filters.minStorage} onChange={(e) => setFilters({...filters, minStorage: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Qualquer Armazenamento</option>
-                <option value="256">256GB ou mais</option>
-                <option value="512">512GB ou mais</option>
-                <option value="1024">1024GB ou mais</option>
-            </select>
-            <select value={filters.gpu} onChange={(e) => setFilters({...filters, gpu: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Qualquer GPU</option>
-                {gpuBrands.map((gpu) => (<option key={gpu} value={gpu}>{gpu}</option>) )}
-            </select>
-            <select value={filters.minRating} onChange={(e) => setFilters({...filters, minRating: e.target.value})} className="bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary">
-                <option value="">Qualquer avaliação</option>
-                <option value="4.0">A partir de 4.0</option>
-                <option value="4.5">A partir de 4.5</option>
-                <option value="5.0">A partir de 5.0</option>
-            </select>
+    return (
+        <div className="space-y-3 px-1 max-w-7xl mx-auto">
+            <input type="text" value={filters.search} onChange={(e) => setFilters({ ...filters, search: e.target.value })} className="w-full bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Digite o que deseja buscar" />
+            <div className="flex flex-wrap gap-2">    
+                <FilterSelect
+                    value={filters.brand}
+                    onChange={(value) => setFilters({ ...filters, brand: value })}
+                    options={[
+                        { value: "", label: "Todas as marcas" },
+                        ...brands.map((brand) => ({
+                            value: brand,
+                            label: brand,
+                        })),
+                    ]}
+                />
+                <FilterSelect
+                    value={filters.category}
+                    onChange={(value) => setFilters({ ...filters, category: value })}
+                    options={[
+                        { value: "", label: "Todas as categorias" },
+                        ...categories.map((category) => ({
+                            value: category,
+                            label: category,
+                        })),
+                    ]}
+                />
+                <FilterSelect
+                    value={filters.maxPrice}
+                    onChange={(value) => setFilters({ ...filters, maxPrice: value })}
+                    options={[
+                        { value: "", label: "Qualquer Preço" },
+                        { value: "3000", label: "Até R$ 3.000" },
+                        { value: "5000", label: "Até R$ 5.000" },
+                        { value: "7000", label: "Até R$ 7.000" },
+                    ]}
+                />
+                <FilterSelect
+                    value={filters.minRam}
+                    onChange={(value) => setFilters({ ...filters, minRam: value })}
+                    options={[
+                        { value: "", label: "Qualquer RAM" },
+                        { value: "8", label: "8GB ou mais" },
+                        { value: "16", label: "16GB ou mais" },
+                        { value: "32", label: "32GB ou mais" },
+                    ]}
+                />
+                <FilterSelect
+                    value={filters.minStorage}
+                    onChange={(value) => setFilters({ ...filters, minStorage: value })}
+                    options={[
+                        { value: "", label: "Qualquer Armazenamento" },
+                        { value: "256", label: "256GB ou mais" },
+                        { value: "512", label: "512GB ou mais" },
+                        { value: "1024", label: "1024GB ou mais" },
+                    ]}
+                />
+                <FilterSelect
+                    value={filters.gpu}
+                    onChange={(value) => setFilters({ ...filters, gpu: value })}
+                    options={[
+                        { value: "", label: "Qualquer GPU" },
+                        ...gpuBrands.map((gpu) => ({
+                            value: gpu,
+                            label: gpu,
+                        })),
+                    ]}
+                />
+                <FilterSelect
+                    value={filters.minRating}
+                    onChange={(value) => setFilters({ ...filters, minRating: value })}
+                    options={[
+                        { value: "", label: "Qualquer avaliação" },
+                        { value: "4.0", label: "A partir de 4.0" },
+                        { value: "4.5", label: "A partir de 4.5" },
+                        { value: "5.0", label: "A partir de 5.0" },
+                    ]}
+                />
             </div>
             <NotebookGrid notebooks={filteredNotebooks} />
         </div>

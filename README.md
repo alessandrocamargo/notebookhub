@@ -2,7 +2,7 @@
 
 Aplicação web para pesquisa, comparação e recomendação de notebooks — ajudando o usuário a encontrar o modelo certo para sua necessidade e orçamento, sem precisar entender de hardware.
 
-![Listagem de notebooks com filtros](./notebooks-listagem-filtros.png)
+![Listagem de notebooks com filtros](./docs/notebooks-listagem-filtros.png)
 
 ## 🎯 Sobre o projeto
 
@@ -14,7 +14,7 @@ O NotebookHub é um MVP frontend que permite:
 - Visualizar detalhes completos de cada notebook: descrição, especificações técnicas, prós e contras
 - Ver mensagens claras quando nenhum resultado é encontrado
 
-![Categorias na Home](./home-categorias.png)
+![Categorias na Home](./docs/home-categorias.png)
 
 Todos os dados são mockados localmente — não há backend nem preços/produtos reais.
 

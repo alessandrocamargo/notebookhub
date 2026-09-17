@@ -15,10 +15,18 @@ export default function NotebookCard({ notebook }) {
                     <p>Bom para: {notebook.categories.join(" | ")}</p>
                 </div>
                 <p className="font-bold">{`R$ ${notebook.price}`}</p>
-                <Link to={`/notebooks/${notebook.id}`} className="text-primary">Ver mais detalhes</Link>
-                <button onClick={() => toggleComparison(notebook)}>
-                    {isSelected ? "Remover da comparação" : "Comparar"}
-                </button>
+                <div className="flex flex-col gap-2">
+                    <Link to={`/notebooks/${notebook.id}`} className="text-primary">Ver mais detalhes</Link>
+                    <button
+                        onClick={() => toggleComparison(notebook)}
+                        className={`rounded-full border px-4 py-2 transition-colors ${isSelected
+                                ? "bg-success text-ink-primary"
+                                : "hover:text-primary"
+                            }`}
+                    >
+                        {isSelected ? "Remover da comparação" : "Comparar"}
+                    </button>
+                </div>
             </div>
         </div>
     )

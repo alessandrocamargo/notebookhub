@@ -29,7 +29,7 @@ Todos os dados são mockados localmente — não há backend nem preços/produto
 ## 🚀 Rodando localmente
 
 ```bash
-git clone [url-do-repositorio](https://github.com/alessandrocamargo/notebookhub.git)
+git clone https://github.com/alessandrocamargo/notebookhub.git
 cd notebookhub
 npm install
 npm run dev

@@ -95,6 +95,11 @@ export default function NotebooksPage() {
                         { value: "5.0", label: "A partir de 5.0" },
                     ]}
                 />
+            </div>
+            <div className="flex justify-between items-center">
+                <p className="text-ink-secondary text-sm">
+                    {`${sortNotebook.length} notebook${sortNotebook.length === 1 ? '' : 's'} encontrado${sortNotebook.length === 1 ? '' : 's'}`}
+                </p>
                 <FilterSelect value={sortBy} onChange={setSortBy} options={sortOptions} />
             </div>
             <NotebookGrid notebooks={sortNotebook} />

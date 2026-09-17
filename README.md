@@ -6,7 +6,7 @@ Aplicação web para pesquisa, comparação e recomendação de notebooks — aj
 
 ## 🎯 Sobre o projeto
 
-O NotebookHub é um MVP frontend que permite:
+O NotebookHub é um projeto frontend que permite:
 
 - Pesquisar notebooks por nome
 - Filtrar por marca, categoria, faixa de preço, RAM, armazenamento, fabricante de GPU e avaliação (combináveis entre si)

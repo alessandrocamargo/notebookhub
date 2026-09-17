@@ -1,14 +1,23 @@
 import { notebooks } from "../data/notebooks"
 import NotebookGrid from "../components/NotebookGrid"
 import { filterNotebooks } from "../services/filters";
+import { sortNotebooks } from "../services/sort";
 import FilterSelect from "../components/FilterSelect";
 import { useState } from "react"
 export default function NotebooksPage() {
     const [filters, setFilters] = useState({ search: "", brand: "", category: "", maxPrice: "", minRam: "", minStorage: "", gpu: "", minRating: "" });
+    const [sortBy, setSortBy] = useState("recommended")
     const filteredNotebooks = filterNotebooks(notebooks, filters);
     const brands = [...new Set(notebooks.map((notebook) => notebook.brand))];
     const categories = [...new Set(notebooks.flatMap((notebook) => notebook.categories))];
     const gpuBrands = [...new Set(notebooks.map((notebook) => notebook.gpu.split(" ")[0]))]
+    const sortOptions = [
+        { value: "recommended", label: "Sem ordenação" },
+        { value: "price-asc", label: "Menor preço" },
+        { value: "price-desc", label: "Maior preço" },
+        { value: "rating-desc", label: "Melhor avaliação" }
+    ];
+    const sortNotebook = sortNotebooks(filteredNotebooks,sortBy)
     return (
         <div className="space-y-3 px-1 max-w-7xl mx-auto">
             <input type="text" value={filters.search} onChange={(e) => setFilters({ ...filters, search: e.target.value })} className="w-full bg-surface border border-border p-1 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Digite o que deseja buscar" />
@@ -86,8 +95,9 @@ export default function NotebooksPage() {
                         { value: "5.0", label: "A partir de 5.0" },
                     ]}
                 />
+                <FilterSelect value={sortBy} onChange={setSortBy} options={sortOptions} />
             </div>
-            <NotebookGrid notebooks={filteredNotebooks} />
+            <NotebookGrid notebooks={sortNotebook} />
         </div>
     )
 }

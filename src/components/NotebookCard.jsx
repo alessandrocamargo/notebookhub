@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom"
-export default function NotebookCard({notebook}) {
-    return(
+import { useComparison } from '../context/ComparisonContext'
+export default function NotebookCard({ notebook }) {
+    const { selectedForComparison, toggleComparison } = useComparison()
+    const isSelected = selectedForComparison.some((item) => item.id === notebook.id)
+    return (
         <div className="bg-surface rounded-lg overflow-hidden">
             <img src={notebook.image} alt={notebook.name} className="w-full h-64 object-cover" />
             <div className="p-4 space-y-2 text-center">
@@ -13,6 +16,9 @@ export default function NotebookCard({notebook}) {
                 </div>
                 <p className="font-bold">{`R$ ${notebook.price}`}</p>
                 <Link to={`/notebooks/${notebook.id}`} className="text-primary">Ver mais detalhes</Link>
+                <button onClick={() => toggleComparison(notebook)}>
+                    {isSelected ? "Remover da comparação" : "Comparar"}
+                </button>
             </div>
         </div>
     )

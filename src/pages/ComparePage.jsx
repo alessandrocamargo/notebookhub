@@ -9,8 +9,17 @@ export default function ComparePage(){
         return <EmptyState message="Selecione mais um notebook para a comparação." />
     }
     const [notebookA, notebookB] = selectedForComparison
+    const specs = [
+        { label: "Processador",valueA: notebookA.processor, valueB: notebookB.processor},
+        { label: "Memória RAM",valueA: notebookA.ram, valueB: notebookB.ram},
+        { label: "Placa de Vídeo",valueA: notebookA.gpu, valueB: notebookB.gpu},
+        { label: "Armazenamento",valueA: notebookA.storage, valueB: notebookB.storage},
+        { label: "Tela",valueA: notebookA.screen, valueB: notebookB.screen},
+        { label: "Preço",valueA: notebookA.price, valueB: notebookB.price},
+    ]
     return(
-        <table>
+        <>
+        <table className="hidden md:table-row">
             <thead>
                 <tr>
                     <th>Característica</th>
@@ -19,43 +28,24 @@ export default function ComparePage(){
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>Processador</td>
-                    <td>{notebookA.processor}</td>
-                    <td>{notebookB.processor}</td>
-                </tr>
-
-                <tr>
-                    <td>Memória RAM</td>
-                    <td>{notebookA.ram}</td>
-                    <td>{notebookB.ram}</td>
-                </tr>
-
-                <tr>
-                    <td>Armazenamento</td>
-                    <td>{notebookA.storage}</td>
-                    <td>{notebookB.storage}</td>
-                </tr>
-
-                <tr>
-                    <td>Placa de Video</td>
-                    <td>{notebookA.gpu}</td>
-                    <td>{notebookB.gpu}</td>
-                </tr>
-
-                <tr>
-                    <td>Tela</td>
-                    <td>{notebookA.screen}</td>
-                    <td>{notebookB.screen}</td>
-                </tr>
-
-                <tr>
-                    <td>Preço</td>
-                    <td>{notebookA.price}</td>
-                    <td>{notebookB.price}</td>
-                </tr>
-
+                {specs.map((spec) => (
+                    <tr key={spec.label} >
+                        <td>{spec.label}</td>
+                        <td>{spec.valueA}</td>
+                        <td>{spec.valueB}</td>
+                    </tr>
+                ))}
             </tbody>
         </table>
+        <div className="md:hidden">
+                {specs.map((spec) => (
+                    <div key={spec.label} className="border-b border-border py-3">
+                        <p className="font-bold text-ink-primary">{spec.label}</p>
+                        <p>{notebookA.name}: {spec.valueA}</p>
+                        <p>{notebookB.name}: {spec.valueB}</p>
+                    </div>
+                ))}
+        </div>
+        </>
     )
 }

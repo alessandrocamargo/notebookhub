@@ -7,6 +7,7 @@ import NotebookDetailsPage from './pages/NotebookDetailsPage';
 import CategoryPage from './pages/CategoryPage';
 import { ComparisonProvider } from './context/ComparisonContext';
 import ComparePage from './pages/ComparePage';
+import RecommendatioPage from './pages/RecommendationPage';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path='/notebooks/:id' element={<NotebookDetailsPage />} />
           <Route path='/categoria/:slug' element={<CategoryPage />} />
           <Route path='/comparar' element={<ComparePage />} />
+          <Route path='/recomendacao' element={<RecommendatioPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </Layout>

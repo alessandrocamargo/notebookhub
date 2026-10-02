@@ -21,15 +21,15 @@ export default function RecommendatioPage() {
         setRecommendations(getRecommendations(notebooks, answers))
     }
 
-    
+
 
     const uniqueCategories = [...new Set(notebooks.flatMap(notebook => notebook.categories))]
     const categoryOptionsFromData = uniqueCategories.map(category => ({
         label: category,
-        value:category
+        value: category
     }))
-    const categoryOptions =[
-        {label: "Todos", value:"Todos"},
+    const categoryOptions = [
+        { label: "Todos", value: "Todos" },
         ...categoryOptionsFromData
     ]
 
@@ -52,16 +52,21 @@ export default function RecommendatioPage() {
         { label: "1 TB ou mais", value: 1024 }
     ]
     return (
-        <div>
+        <div className="space-y-3 px-1 max-w-7xl mx-auto">
             {!showResults ? (
-                <div>
-                    <h1>Encontre seu proximo ou primeiro notebook</h1>
-                    <FilterSelect value={answers.category} onChange={(value) => setAnswers({ ...answers, category: value })} options={categoryOptions} />
-                    <FilterSelect value={answers.gpuType} onChange={(value) => setAnswers({ ...answers, gpuType: value })} options={gpuOptions} />
-                    <FilterSelect value={answers.maxPrice} onChange={(value) => setAnswers({ ...answers, maxPrice: value })} options={priceOptions} />
-                    <FilterSelect value={answers.minStorage} onChange={(value) => setAnswers({ ...answers, minStorage: value })} options={storageOptions} />
-                    <button onClick={handleSubmit}>Ver recomendações</button>
-                </div>
+                <>
+                    <h1 className="text-ink-primary text-4xl">Encontre seu proximo ou primeiro notebook</h1>
+                    <div className="p-1 rounded-lg flex flex-wrap gap-2 justify-center items-center">
+                        <FilterSelect value={answers.category} onChange={(value) => setAnswers({ ...answers, category: value })} options={categoryOptions} />
+                        <FilterSelect value={answers.gpuType} onChange={(value) => setAnswers({ ...answers, gpuType: value })} options={gpuOptions} />
+                        <FilterSelect value={answers.maxPrice} onChange={(value) => setAnswers({ ...answers, maxPrice: value })} options={priceOptions} />
+                        <FilterSelect value={answers.minStorage} onChange={(value) => setAnswers({ ...answers, minStorage: value })} options={storageOptions} />
+                    </div>
+                    <div className="flex justify-center">
+                        <button className="rounded-full border px-8 py-3 bg-surface border-primary text-primary" onClick={handleSubmit}>Ver recomendações</button>
+                    </div>
+                </>
+
             ) : (
                 <NotebookGrid notebooks={recommendations} />
             )}

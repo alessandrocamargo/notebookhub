@@ -1,4 +1,4 @@
-import { notebooks } from "../data/notebooks"
+import { notebooks } from "../data/Notebooks"
 import { Link } from "react-router-dom";
 import { slugify } from "../services/slug";
 export default function HomePage() {

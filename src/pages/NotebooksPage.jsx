@@ -1,4 +1,4 @@
-import { notebooks } from "../data/notebooks"
+import { notebooks } from "../data/Notebooks"
 import NotebookGrid from "../components/NotebookGrid"
 import { filterNotebooks } from "../services/filters";
 import { sortNotebooks } from "../services/sort";

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { notebooks } from "../data/notebooks";
+import { notebooks } from "../data/Notebooks";
 import { slugify } from "../services/slug";
 import NotebookGrid from "../components/NotebookGrid";
 export default function CategoryPage(){

@@ -55,7 +55,7 @@ export default function RecommendatioPage() {
         <div className="space-y-3 px-1 max-w-7xl mx-auto">
             {!showResults ? (
                 <>
-                    <h1 className="text-ink-primary text-4xl">Encontre seu proximo ou primeiro notebook</h1>
+                    <h1 className="text-ink-primary text-4xl text-center">Encontre seu proximo ou primeiro notebook</h1>
                     <div className="p-1 rounded-lg flex flex-wrap gap-2 justify-center items-center">
                         <FilterSelect value={answers.category} onChange={(value) => setAnswers({ ...answers, category: value })} options={categoryOptions} />
                         <FilterSelect value={answers.gpuType} onChange={(value) => setAnswers({ ...answers, gpuType: value })} options={gpuOptions} />

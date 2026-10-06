@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import {Check, X} from 'lucide-react'
 import { useParams } from "react-router-dom";
-import { notebooks } from "../data/notebooks";
+import { notebooks } from "../data/Notebooks";
 
 export default function NotebookDetailsPage() {
     const { id } = useParams();

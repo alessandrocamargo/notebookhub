@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {Check, X} from 'lucide-react'
 import { useParams } from "react-router-dom";
 import { notebooks } from "../data/notebooks";
@@ -7,6 +7,7 @@ export default function NotebookDetailsPage() {
     const { id } = useParams();
     const notebookId = Number(id);
     const notebook = notebooks.find((notebook) => notebook.id === notebookId)
+    const navigate = useNavigate()
 
     if (!notebook) {
         return (
@@ -17,8 +18,15 @@ export default function NotebookDetailsPage() {
         )
     }
 
+    function handleVoltar(){
+        navigate(-1)
+    }
+
     return (
         <div className="max-w-7xl mx-auto">
+            <div>
+                    <button className="mt-2 mb-2 inline-flex items-center rounded-lg border border-secondary px-2 py-1 font-semibold text-ink-primary transition hover:bg-secondary" onClick={handleVoltar}>← Voltar</button>
+                </div>
             <div className="flex flex-col md:flex-row">
                 <div>
                     <img src={notebook.image} alt={notebook.name} className="w-72 h-72 object-cover" />

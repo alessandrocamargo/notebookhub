@@ -58,7 +58,7 @@ export default function NotebooksPage() {
                     value={filters.minRam}
                     onChange={(value) => setFilters({ ...filters, minRam: value })}
                     options={[
-                        { value: "", label: "Qualquer RAM" },
+                        { value: "", label: "Qualquer Memoria" },
                         { value: "8", label: "8GB ou mais" },
                         { value: "16", label: "16GB ou mais" },
                         { value: "32", label: "32GB ou mais" },
@@ -78,7 +78,7 @@ export default function NotebooksPage() {
                     value={filters.gpu}
                     onChange={(value) => setFilters({ ...filters, gpu: value })}
                     options={[
-                        { value: "", label: "Qualquer GPU" },
+                        { value: "", label: "Qualquer Placa de Video" },
                         ...gpuBrands.map((gpu) => ({
                             value: gpu,
                             label: gpu,

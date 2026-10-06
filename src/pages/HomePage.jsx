@@ -22,6 +22,10 @@ export default function HomePage() {
                         </Link>
                     </div>
             </section>
+            <section className="flex flex-col text-center">
+                <div className="mb-5">
+                    <h2 className="text-4xl text-ink-primary">Ou você pode navegar pelas Categorias abaixo</h2>
+                </div>
                 <div className="flex flex-wrap gap-2">
                     {categoriasUnicas.map((categoria) => (
                         <Link key={categoria} to={`/categoria/${slugify(categoria)}`} className="rounded-full border px-4 py-2 hover:text-primary transition-colors">
@@ -29,6 +33,8 @@ export default function HomePage() {
                         </Link>
                     ))}
                 </div>
+            </section>
+                
         </div>
 
     )
